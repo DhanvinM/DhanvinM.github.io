@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Battery Management System | Dhanvin Menon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f6f2ea;
+      --card: #fffaf2;
+      --ink: #191713;
+      --muted: #625d55;
+      --accent: #b85c2e;
+      --accent-soft: #ead1bf;
+      --border: rgba(25, 23, 19, 0.13);
+      --mono: "DM Mono", monospace;
+      --serif: "DM Serif Display", serif;
+      --sans: "Instrument Sans", sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: radial-gradient(circle at top right, var(--accent-soft), transparent 34%), var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 7vw;
+      background: rgba(246, 242, 234, 0.86);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav a { color: var(--ink); text-decoration: none; }
+    .logo { font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; color: var(--accent); }
+    .back { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; }
+    .back:hover { color: var(--accent); }
+    header { padding: 90px 7vw 50px; }
+    .tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      max-width: 900px;
+      margin-bottom: 24px;
+    }
+    .intro { max-width: 760px; color: var(--muted); font-size: 18px; }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+      padding: 20px 7vw 60px;
+    }
+    .meta-card, section {
+      background: rgba(255, 250, 242, 0.72);
+      border: 1px solid var(--border);
+    }
+    .meta-card { padding: 20px; }
+    .meta-card strong {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    main { padding: 0 7vw 90px; display: grid; gap: 24px; }
+    section { padding: 34px; }
+    h2 { font-family: var(--serif); font-size: clamp(32px, 4vw, 48px); line-height: 1; margin-bottom: 18px; }
+    h3 { font-size: 20px; margin: 24px 0 8px; }
+    p { color: var(--muted); margin-bottom: 14px; }
+    ul { color: var(--muted); padding-left: 20px; margin: 12px 0; }
+    li { margin-bottom: 8px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .chip {
+      border: 1px solid var(--border);
+      background: var(--bg);
+      padding: 7px 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .note {
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+      color: var(--muted);
+      margin-top: 18px;
+    }
+    footer { padding: 40px 7vw; border-top: 1px solid var(--border); color: var(--muted); font-family: var(--mono); font-size: 12px; }
+    @media (max-width: 720px) {
+      nav, header, .meta-grid, main, footer { padding-left: 5vw; padding-right: 5vw; }
+      section { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="logo" href="index.html">DHANVIN MENON</a>
+    <a class="back" href="index.html">← Back to projects</a>
+  </nav>
+
+  <header>
+    <div class="tag">Project case study</div>
+    <h1>Battery Management System</h1>
+    <p class="intro">
+      A first-year engineering project focused on understanding how battery packs can be monitored safely using sensors, embedded programming, and real-time data.
+    </p>
+  </header>
+
+  <div class="meta-grid">
+    <div class="meta-card"><strong>Status</strong>In progress</div>
+    <div class="meta-card"><strong>Area</strong>Embedded systems and battery safety</div>
+    <div class="meta-card"><strong>Tools</strong>ESP32, MicroPython, sensors</div>
+    <div class="meta-card"><strong>Goal</strong>Learn by building and testing</div>
+  </div>
+
+  <main>
+    <section>
+      <h2>Overview</h2>
+      <p>
+        A Battery Management System is used to monitor and protect a collection of battery cells. It helps track important values such as voltage, current, and temperature during charging and discharging.
+      </p>
+      <p>
+        This matters because batteries need to stay within safe operating limits. If voltage, current, or temperature move outside a safe range for too long, it can create serious safety issues, especially with lithium-ion batteries.
+      </p>
+      <p>
+        For this project, I am using the Battery Management System as a way to build practical skills in electronics, embedded programming, data collection, and battery safety.
+      </p>
+    </section>
+
+    <section>
+      <h2>Components Used</h2>
+      <p>These are the main components I am using or researching for the system.</p>
+      <div class="chips">
+        <span class="chip">ESP32</span>
+        <span class="chip">MicroPython</span>
+        <span class="chip">Shunt Resistor</span>
+        <span class="chip">Voltage Divider</span>
+        <span class="chip">NTC Thermistor</span>
+        <span class="chip">MOSFET</span>
+        <span class="chip">Lithium-ion Cells</span>
+        <span class="chip">ADC Readings</span>
+        <span class="chip">Battery Pack</span>
+        <span class="chip">Data Logging</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why I Chose This Project</h2>
+      <p>
+        I learn best through hands-on work, so building a Battery Management System is a practical way for me to develop real engineering skills while understanding how individual components behave in a larger system.
+      </p>
+      <p>
+        This project also connects to a longer-term goal: creating a home-built solar power wall with Bluetooth monitoring and data logging to a handheld device. By building the system myself, I can understand the design choices instead of relying only on an off-the-shelf BMS.
+      </p>
+    </section>
+
+    <section>
+      <h2>What I Am Learning</h2>
+      <ul>
+        <li>How voltage, current, and temperature are measured in a battery pack.</li>
+        <li>How components such as shunt resistors, voltage dividers, NTC thermistors, and MOSFETs are used in monitoring and protection circuits.</li>
+        <li>How to use an ESP32 with MicroPython for embedded programming.</li>
+        <li>How sensor readings can be collected, interpreted, and used for safer battery operation.</li>
+        <li>How data logging can help with diagnostics and estimating the state of charge.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Battery Safety</h2>
+      <p>
+        Functional safety is one of the most important parts of a Battery Management System. Lithium-ion batteries can be dangerous if they are charged, discharged, or operated incorrectly.
+      </p>
+      <p>
+        A BMS helps reduce risk by monitoring the battery pack and helping prevent unsafe conditions such as overvoltage, undervoltage, overcurrent, and excessive temperature.
+      </p>
+      <p class="note">
+        This project is being developed as a learning project. I am treating safety as a core part of the design, not as an extra feature.
+      </p>
+    </section>
+
+    <section>
+      <h2>System Architecture</h2>
+      <p>
+        The system is based on real-time sensor data from the battery pack. The ESP32 reads sensor values and uses them to monitor the condition of the battery.
+      </p>
+      <ul>
+        <li><strong>Voltage sensing:</strong> Used to check whether the battery is within a safe voltage range.</li>
+        <li><strong>Current sensing:</strong> Used to understand charging and discharging behaviour.</li>
+        <li><strong>Temperature sensing:</strong> Used to detect unsafe heating.</li>
+        <li><strong>Control logic:</strong> Used to make decisions based on the sensor readings.</li>
+        <li><strong>Data logging:</strong> Used to record information for diagnostics and future analysis.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Kalman Filter Interest</h2>
+      <p>
+        One part of this project I am especially interested in is the Kalman filter. It is an algorithm that can combine noisy sensor data, such as ADC readings, with a mathematical model to produce a more reliable estimate.
+      </p>
+      <p>
+        In this project, I want to explore how a Kalman filter could be used to improve State of Charge estimation. I have not fully implemented this yet, but it is one of the ideas I am keen to investigate as the project develops.
+      </p>
+    </section>
+
+    <section>
+      <h2>Future Improvements</h2>
+      <ul>
+        <li>Add Bluetooth monitoring from the ESP32.</li>
+        <li>Improve data logging and display useful battery information clearly.</li>
+        <li>Test the system with safer low-voltage setups before scaling.</li>
+        <li>Develop a cleaner enclosure or PCB layout.</li>
+        <li>Explore State of Charge estimation using filtering techniques.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    Battery Management System case study · Built by Dhanvin Menon
+  </footer>
+</body>
+</html>
