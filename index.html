@@ -132,6 +132,15 @@
     .about-wrap { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 36px; align-items: start; }
     .about-box { background: var(--card); border: 1px solid var(--border); padding: 26px; }
     footer { padding: 40px 7vw; border-top: 1px solid var(--border); color: var(--muted); font-family: var(--mono); font-size: 12px; }
+    footer a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 6px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
     @media (max-width: 820px) {
       nav { padding: 16px 5vw; }
       .nav-links { gap: 14px; }
