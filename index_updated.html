@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dhanvin Menon | Engineering Portfolio</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Mono:wght@400;500&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --bg: #F5F3EE;
+    --bg2: #EDEAE3;
+    --ink: #1A1916;
+    --ink2: #4A4844;
+    --ink3: #8A8880;
+    --accent: #C8602A;
+    --accent2: #E8D5C4;
+    --border: rgba(26,25,22,0.12);
+    --mono: "DM Mono", monospace;
+    --serif: "DM Serif Display", serif;
+    --sans: "Instrument Sans", sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(245,243,238,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink2);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--accent);
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 3rem 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 50vw;
+    height: 70vh;
+    background: radial-gradient(ellipse at center, var(--accent2) 0%, transparent 70%);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .hero-left,
+  .hero-right {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--ink2);
+    line-height: 1.7;
+    max-width: 460px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    padding: 0.85rem 2rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--ink2);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover {
+    color: var(--accent);
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .stat-card:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    color: var(--accent);
+    line-height: 1;
+    min-width: 60px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.4;
+  }
+
+  .stat-label strong {
+    display: block;
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  section {
+    padding: 6rem 3rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    letter-spacing: -0.02em;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    color: var(--ink2);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-text strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .skill-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .skill-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background: var(--accent2);
+    padding: 3px 10px;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  .skill-name {
+    font-size: 14px;
+    color: var(--ink2);
+  }
+
+  .projects-section {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .projects-section .section-title {
+    color: var(--bg);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .project-card {
+    background: var(--ink);
+    padding: 2rem;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .project-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover {
+    background: rgba(255,255,255,0.04);
+  }
+
+  .project-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .project-status {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .project-title {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    color: var(--bg);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: rgba(245,243,238,0.68);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: rgba(245,243,238,0.58);
+    border: 0.5px solid rgba(245,243,238,0.15);
+    padding: 3px 10px;
+  }
+
+  .project-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .contact-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .contact-text h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .contact-text h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .contact-text p {
+    font-size: 16px;
+    color: var(--ink2);
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border: 0.5px solid var(--border);
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+
+  .contact-item:hover {
+    border-color: var(--accent);
+    background: var(--accent2);
+    transform: translateX(4px);
+  }
+
+  .contact-item-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .contact-platform {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+    min-width: 70px;
+  }
+
+  .contact-handle {
+    font-size: 14px;
+    color: var(--ink2);
+  }
+
+  .contact-arrow {
+    font-size: 16px;
+    color: var(--ink3);
+  }
+
+  footer {
+    background: var(--bg2);
+    border-top: 0.5px solid var(--border);
+    padding: 2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink3);
+    letter-spacing: 0.06em;
+  }
+
+  .divider {
+    width: 100%;
+    height: 0.5px;
+    background: var(--border);
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-tag { animation: fadeUp 0.6s ease both; }
+  .hero h1 { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-desc { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-cta { animation: fadeUp 0.6s 0.3s ease both; }
+  .hero-right { animation: fadeUp 0.6s 0.4s ease both; }
+
+  @media (max-width: 768px) {
+    nav {
+      padding: 1rem 1.5rem;
+    }
+
+    .nav-links {
+      gap: 1rem;
+    }
+
+    .hero,
+    .about-grid,
+    .contact-section {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .hero {
+      padding: 7rem 1.5rem 3rem;
+      min-height: auto;
+    }
+
+    section {
+      padding: 4rem 1.5rem;
+    }
+
+    footer {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+<body>
+<nav>
+<a class="nav-logo" href="#home">DM / ENG + IT</a>
+<ul class="nav-links">
+<li><a href="#about">about</a></li>
+<li><a href="#projects">projects</a></li>
+<li><a href="#education">education</a></li>
+<li><a href="#contact">contact</a></li>
+</ul>
+</nav>
+<section class="hero" id="home">
+<div class="hero-left">
+<div class="hero-tag">Engineering &amp; Information Technology — Macquarie University</div>
+<h1>Dhanvin<br/><em>Menon.</em></h1>
+<p class="hero-desc">
+      Engineering and IT student at Macquarie University, building practical projects from day one.
+      I’m interested in embedded systems, electronics, battery technology, software, and the way hardware and code work together.
+    </p>
+<div class="hero-cta">
+<a class="btn-primary" href="#projects">View Projects</a>
+<a class="btn-ghost" href="#contact">Get in touch →</a>
+</div>
+</div>
+<div class="hero-right">
+<div class="stat-card">
+<div class="stat-num">01</div>
+<div class="stat-label">
+<strong>Projects Underway</strong>
+        Battery Management System — active build
+      </div>
+</div>
+<div class="stat-card">
+<div class="stat-num">2x</div>
+<div class="stat-label">
+<strong>Double Degree</strong>
+        Engineering Honours + Information Technology
+      </div>
+</div>
+<div class="stat-card">
+<div class="stat-num">AU</div>
+<div class="stat-label">
+<strong>Based in Sydney</strong>
+        Open to internship and learning opportunities
+      </div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<section id="about">
+<div class="section-header">
+<span class="section-num">01 —</span>
+<h2 class="section-title">About me</h2>
+</div>
+<div class="about-grid">
+<div class="about-text">
+<p>
+        I’m a first-year Engineering and Information Technology student at Macquarie University.
+        I learn best by building, testing, making mistakes, and improving from the results.
+      </p>
+<p>
+        My current interests include embedded systems, circuit design, battery technology, renewable energy,
+        software development, and using programming to collect and interpret real-world data.
+      </p>
+<p>
+        This portfolio is where I document what I’m building, what I’m learning, and how my technical understanding develops over time.
+      </p>
+</div>
+<div class="skills-grid">
+<div class="skill-row">
+<span class="skill-tag">EE</span>
+<span class="skill-name">Circuit Design &amp; Analysis</span>
+</div>
+<div class="skill-row">
+<span class="skill-tag">MCU</span>
+<span class="skill-name">ESP32 / Embedded Systems</span>
+</div>
+<div class="skill-row">
+<span class="skill-tag">CODE</span>
+<span class="skill-name">Python / MicroPython / C</span>
+</div>
+<div class="skill-row">
+<span class="skill-tag">PCB</span>
+<span class="skill-name">KiCad PCB Design</span>
+</div>
+<div class="skill-row">
+<span class="skill-tag">IT</span>
+<span class="skill-name">Artificial Intelligence &amp; Cybersecurity Fundamentals</span>
+</div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<section class="projects-section" id="projects">
+<div class="section-header">
+<span class="section-num">02 —</span>
+<h2 class="section-title">Projects</h2>
+</div>
+<div class="projects-grid"><a class="project-card" href="machinepulse.html"><div class="project-status"><span class="status-dot"></span> Live</div><h3 class="project-title">Project 01 — MachinePulse</h3><p class="project-desc">A full-stack industrial machine monitoring dashboard that simulates live sensor data, scores machine health in real time, and visualises historical trends.</p><div class="project-tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">SQLite</span><span class="tag">Pandas</span></div><span class="project-link">View full project →</span></a><a class="project-card" href="battery-management-system.html">
+<div class="project-status">
+<span class="status-dot"></span>
+        In Progress
+      </div>
+<h3 class="project-title">Project 02 — Battery Management System</h3>
+<p class="project-desc">
+        A custom Battery Management System for a 3-cell lithium-ion battery pack.
+        The project focuses on voltage monitoring, current sensing, temperature monitoring,
+        Bluetooth Low Energy communication, and exploring state-of-charge estimation techniques.
+      </p>
+<div class="project-tags">
+<span class="tag">ESP32</span>
+<span class="tag">MicroPython</span>
+<span class="tag">Voltage Divider</span>
+<span class="tag">Shunt Resistor</span>
+<span class="tag">NTC Thermistor</span>
+<span class="tag">MOSFET</span>
+<span class="tag">BLE</span>
+</div>
+<span class="project-link">View full project →</span>
+</a></div>
+</section>
+<div class="divider"></div>
+<section id="education">
+<div class="section-header">
+<span class="section-num">03 —</span>
+<h2 class="section-title">Education &amp; Certifications</h2>
+</div>
+<div class="about-grid">
+<div class="about-text">
+<p>
+<strong>Macquarie University</strong><br/>
+        Bachelor of Engineering (Honours) / Bachelor of Information Technology
+      </p>
+<p>
+        Alongside my coursework, I’m building practical projects to develop hands-on experience in embedded systems,
+        electronics, software, and engineering design.
+      </p>
+</div>
+<div class="skills-grid">
+<div class="skill-row">
+<span class="skill-tag">MQ</span>
+<span class="skill-name">Engineering &amp; IT Double Degree</span>
+</div>
+<div class="skill-row">
+<span class="skill-tag">IBM</span>
+<span class="skill-name">Artificial Intelligence Fundamentals</span>
+</div>
+<div class="skill-row">
+<span class="skill-tag">IBM</span>
+<span class="skill-name">Cybersecurity Fundamentals</span>
+</div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<section id="contact">
+<div class="contact-section">
+<div class="contact-text">
+<h2>Let’s build<br/><em>something real.</em></h2>
+<p>
+        I’m always happy to connect with engineers, students, and recruiters.
+        If you’d like to chat about engineering, projects, or internship opportunities, feel free to get in touch.
+      </p>
+</div>
+<div class="contact-links">
+<a class="contact-item" href="mailto:810.menon@gmail.com">
+<div class="contact-item-left">
+<span class="contact-platform">Email</span>
+<span class="contact-handle">810.menon@gmail.com</span>
+</div>
+<span class="contact-arrow">↗</span>
+</a>
+<a class="contact-item" href="https://www.linkedin.com/in/dhanvin-menon-a56805398/" rel="noopener noreferrer" target="_blank">
+<div class="contact-item-left">
+<span class="contact-platform">LinkedIn</span>
+<span class="contact-handle">Dhanvin Menon</span>
+</div>
+<span class="contact-arrow">↗</span>
+</a>
+<a class="contact-item" href="https://github.com/DhanvinM" rel="noopener noreferrer" target="_blank">
+<div class="contact-item-left">
+<span class="contact-platform">GitHub</span>
+<span class="contact-handle">DhanvinM</span>
+</div>
+<span class="contact-arrow">↗</span>
+</a>
+</div>
+</div>
+</section>
+<footer>
+<p>Dhanvin Menon — Engineering &amp; Information Technology Student</p>
+<p>Built with HTML &amp; CSS • Updated as projects grow.</p>
+</footer>
+</body>
+</html>
