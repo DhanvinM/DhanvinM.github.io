@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MachinePulse | Dhanvin Menon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f6f2ea;
+    --card: #fffaf2;
+    --ink: #191713;
+    --muted: #625d55;
+    --accent: #b85c2e;
+    --accent-soft: #ead1bf;
+    --border: rgba(25, 23, 19, 0.13);
+    --mono: "DM Mono", monospace;
+    --serif: "DM Serif Display", serif;
+    --sans: "Instrument Sans", sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: radial-gradient(circle at top right, var(--accent-soft), transparent 34%), var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    background: rgba(246, 242, 234, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+  }
+  nav .brand { font-weight: 500; }
+  nav .back { color: var(--muted); }
+  nav .back:hover { color: var(--accent); }
+
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+
+  .kicker {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 2.6rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    line-height: 1.15;
+  }
+
+  .lede {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 620px;
+    margin-bottom: 36px;
+  }
+
+  .live-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    background: var(--accent);
+    color: var(--card);
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    margin-bottom: 40px;
+    transition: opacity 0.15s ease;
+  }
+  .live-link:hover { opacity: 0.85; }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 56px;
+  }
+  .meta-item {
+    background: var(--card);
+    padding: 18px 20px;
+  }
+  .meta-item .label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .meta-item .value {
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  section { margin-bottom: 48px; }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  p { margin-bottom: 14px; color: var(--ink); }
+  p:last-child { margin-bottom: 0; }
+
+  ul { padding-left: 0; list-style: none; }
+  li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  li strong { font-weight: 600; }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: var(--muted);
+  }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px 48px;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .meta-grid { grid-template-columns: repeat(2, 1fr); }
+    h1 { font-size: 2rem; }
+    nav { padding: 16px 20px; }
+    main { padding: 40px 20px 72px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="https://dhanvinm.github.io/index.html">DHANVIN MENON</a>
+  <a class="back" href="https://dhanvinm.github.io/index.html">← Back to projects</a>
+</nav>
+
+<main>
+  <div class="kicker">Project case study</div>
+  <h1>MachinePulse</h1>
+  <p class="lede">
+    A full-stack industrial machine monitoring dashboard that simulates live sensor
+    data, scores machine health in real time, and tracks trends over time — built
+    end-to-end and deployed live.
+  </p>
+
+  <a class="live-link" href="https://machinepulse-dhanvin.streamlit.app/" target="_blank" rel="noopener">
+    View Live App ↗
+  </a>
+
+  <div class="meta-grid">
+    <div class="meta-item">
+      <div class="label">Status</div>
+      <div class="value">Live / deployed</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Area</div>
+      <div class="value">Software &amp; data systems</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Tools</div>
+      <div class="value">Python, Streamlit, SQLite</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Goal</div>
+      <div class="value">Learn full-stack app development</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Overview</h2>
+    <p>
+      MachinePulse is a dashboard for monitoring industrial machines. It simulates
+      live sensor readings for three machine types — a motor, a pump, and a
+      conveyor — and turns those readings into a health score, a maintenance
+      status, and an energy efficiency rating.
+    </p>
+    <p>
+      This matters because in real industrial settings, catching problems early —
+      overheating, excess vibration, inefficient power draw — can prevent costly
+      failures and downtime. Condition monitoring like this is a growing part of
+      how modern equipment is managed, so I wanted to understand it by building a
+      working version myself.
+    </p>
+    <p>
+      For this project, I am using MachinePulse as a way to build practical skills
+      in software architecture, data handling, interface design, and cloud
+      deployment.
+    </p>
+  </section>
+
+  <section>
+    <h2>Tools &amp; Stack Used</h2>
+    <p>These are the main technologies the dashboard is built on.</p>
+    <div class="tags">
+      <span class="tag">Python</span>
+      <span class="tag">Streamlit</span>
+      <span class="tag">SQLite</span>
+      <span class="tag">Pandas</span>
+      <span class="tag">Git &amp; GitHub</span>
+      <span class="tag">Streamlit Community Cloud</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why I Chose This Project</h2>
+    <p>
+      I learn best through hands-on work, and I wanted a project that let me build
+      the software and data side of an engineering system, to complement the
+      hardware side I'm developing through my Battery Management System project.
+    </p>
+    <p>
+      This project also let me learn the full pipeline of building something real:
+      writing the code locally, structuring it properly, version-controlling it
+      with Git and GitHub, and deploying it so it's actually usable by anyone with
+      the link, not just running on my own laptop.
+    </p>
+  </section>
+
+  <section>
+    <h2>What I Am Learning</h2>
+    <ul>
+      <li><strong>Application structure:</strong> how to split a project into UI, logic, and database layers instead of one long script.</li>
+      <li><strong>Health scoring:</strong> how to turn raw sensor values into a clear, interpretable status.</li>
+      <li><strong>Data persistence:</strong> how to store and query readings over time using SQLite.</li>
+      <li><strong>Version control:</strong> how Git and GitHub are used to track changes and back up a project properly.</li>
+      <li><strong>Deployment:</strong> how to take a local Python app and host it live, so it runs independently of my own machine.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Design Considerations</h2>
+    <p>
+      A monitoring dashboard is only useful if its readings can be trusted. I put
+      thought into how the health score is calculated — clamping it to a sensible
+      0–100 range, and weighting temperature, vibration, runtime, and power draw
+      so no single factor unfairly dominates the result.
+    </p>
+    <p>
+      I also kept the code modular — separating the interface, the calculations,
+      and the database — so each part can be tested and improved on its own
+      without risking the rest of the app.
+    </p>
+  </section>
+
+  <section>
+    <h2>System Architecture</h2>
+    <p>
+      The system is built in layers, with the interface, the logic, and the data
+      storage kept separate from each other.
+    </p>
+    <ul>
+      <li><strong>UI layer:</strong> a Streamlit interface for selecting a machine, generating readings, and viewing live metrics.</li>
+      <li><strong>Logic layer:</strong> functions that simulate sensor data and calculate health and power status.</li>
+      <li><strong>Data layer:</strong> an SQLite database that stores every reading so trends can be tracked over time.</li>
+      <li><strong>Visualization:</strong> line charts for temperature, vibration, power, and health score history.</li>
+      <li><strong>Deployment:</strong> hosted on Streamlit Community Cloud, connected directly to the GitHub repository.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Predictive Maintenance Interest</h2>
+    <p>
+      One part of this project I am especially interested in extending is
+      predictive maintenance — using historical trends to flag when a machine is
+      likely to need service, instead of only reacting once a reading is already
+      bad.
+    </p>
+    <p>
+      I have not implemented this yet, but since the history data is already being
+      logged, it is a natural next step as the project develops.
+    </p>
+  </section>
+
+  <section>
+    <h2>Future Improvements</h2>
+    <ul>
+      <li>Replace simulated readings with real sensor input, potentially tying into my Battery Management System project.</li>
+      <li>Add persistent cloud storage so history isn't lost when the app restarts.</li>
+      <li>Explore basic anomaly detection or predictive maintenance from historical trends.</li>
+      <li>Add alerting, such as a notification when a machine goes critical.</li>
+      <li>Add multi-user support with saved preferences per user.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  MachinePulse case study · Built by Dhanvin Menon
+</footer>
+
+</body>
+</html>
